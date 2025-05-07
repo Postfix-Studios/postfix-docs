@@ -3,7 +3,7 @@ name: Deploy PostFix Docs to Github Pages
 on:
   push:
     branches:
-      - v4
+      - main
 
 permissions:
   contents: read

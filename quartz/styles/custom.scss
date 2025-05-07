@@ -1,0 +1,41 @@
+@use "./base.scss";
+
+// Custom styles for modern layout
+body {
+  font-feature-settings: "ss01", "ss03", "cv01", "cv02", "cv03";
+}
+
+// Modern layout improvements
+.page-title {
+  font-weight: 700;
+}
+
+.article-title {
+  font-weight: 700;
+}
+
+// Improve spacing and readability
+article {
+  line-height: 1.6;
+}
+
+// Improve mobile experience
+@media (max-width: 600px) {
+  .page {
+    padding: 1rem;
+  }
+}
+
+// Enhance buttons and interactive elements
+button, .search-button {
+  transition: all 0.2s ease;
+  &:hover {
+    transform: translateY(-1px);
+  }
+}
+
+// Improve graph view
+.graph {
+  border-radius: 8px;
+  overflow: hidden;
+}

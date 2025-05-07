@@ -1,0 +1,1 @@
+Who are we? what do we do? What are we trying to make right now?

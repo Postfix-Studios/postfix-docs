@@ -1,0 +1,267 @@
+.icon-group {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 0;
+  margin: 0.5rem 0;
+  border-radius: 5px;
+
+  .icon-group-header {
+    margin-bottom: 0.25rem;
+
+    h3 {
+      font-size: 0.95rem;
+      margin: 0;
+      color: var(--darkgray);
+      font-weight: 500;
+    }
+  }
+
+  .icon-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    justify-content: flex-start;
+    padding: 0;
+    background: none;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .social-icons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 10px;
+    flex-wrap: wrap;
+    gap: 0;
+
+    a {
+      display: inline-flex;
+    }
+  }
+}
+
+%icon-base {
+  cursor: pointer;
+  position: relative;
+  width: 32px;
+  height: 32px;
+  margin: 0 14px 0 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--lightgray);
+  border: none;
+  border-radius: 50%;
+  color: var(--darkgray);
+  transition: transform 0.2s ease;
+
+  &::after {
+    content: attr(title);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-8px);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+    pointer-events: none;
+    z-index: 10;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(4px);
+  }
+
+  &:hover {
+    transform: rotate(5deg);
+
+    &::after {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(0) rotate(-5deg);
+    }
+  }
+
+  svg {
+    width: 18px;
+    height: 18px;
+    fill: var(--primary);
+    transition: inherit;
+  }
+}
+
+.darkmode {
+  @extend %icon-base;
+  text-align: inherit;
+}
+
+.social-icon {
+  @extend %icon-base;
+}
+
+.social-icons-container {
+  width: 100%;
+  margin: 0.5rem 0 1.5rem 0;
+
+  .section-title {
+    margin-bottom: 0.75rem;
+
+    h3 {
+      font-size: 0.9rem;
+      margin: 0;
+      color: var(--darkgray);
+      font-weight: 500;
+      letter-spacing: 0.01em;
+    }
+  }
+
+  .social-icons-list {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 0.5rem;
+
+    .social-icons {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0;
+
+      a {
+        display: inline-flex;
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+:root[saved-theme="dark"] {
+  color-scheme: dark;
+
+  .social-icons-container {
+    .section-title h3 {
+      color: var(--lightgray);
+    }
+  }
+
+  .icon-group {
+    .icon-group-header h3 {
+      color: var(--lightgray);
+    }
+
+    .icon-container {
+      background: none;
+    }
+  }
+
+  .social-icon,
+  .darkmode {
+    color: var(--primary);
+    background: rgba(255, 255, 255, 0.08);
+
+    &::after {
+      background: var(--primary);
+      color: var(--background);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+  }
+
+  .darkmode {
+    & > #dayIcon {
+      display: none;
+    }
+    & > #nightIcon {
+      display: inline;
+    }
+  }
+}
+
+:root[saved-theme="light"] {
+  color-scheme: light;
+
+  .social-icon,
+  .darkmode {
+    color: var(--darkgray);
+    background: var(--lightgray);
+
+    &::after {
+      background: var(--secondary);
+      color: white;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    }
+  }
+
+  .darkmode {
+    & > #dayIcon {
+      display: inline;
+    }
+    & > #nightIcon {
+      display: none;
+    }
+  }
+}
+
+@media (max-width: 1100px) {
+  %icon-base {
+    margin: 0 12px 0 0;
+  }
+}
+
+@media (max-width: 800px) {
+  %icon-base {
+    margin: 0 10px 0 0;
+  }
+
+  .social-icons-container {
+    margin: 0.5rem 0 1rem 0;
+  }
+
+  .icon-group {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    align-items: center;
+
+    .icon-group-header {
+      display: none;
+    }
+
+    .icon-container {
+      justify-content: center;
+      padding: 0;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .social-icons-container {
+    .social-icons-list {
+      justify-content: center;
+
+      .social-icons {
+        justify-content: center;
+      }
+    }
+  }
+
+  .icon-group {
+    .social-icons {
+      margin-top: 5px;
+      justify-content: center;
+    }
+  }
+}
+
+@media (max-width: 400px) {
+  .social-icons-container,
+  .icon-group {
+    display: none;
+  }
+}
